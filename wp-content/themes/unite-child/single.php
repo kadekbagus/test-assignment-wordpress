@@ -15,10 +15,10 @@ get_header(); ?>
             <?php get_template_part( 'content', 'single' ); ?>
 
             <?php if ( get_post_type( get_the_ID() ) == 'films' ) : ?>
-                <p>Country <?php display_taxonomy_terms('country'); ?></p>
-                <p>Genre <?php display_taxonomy_terms('genre'); ?></p>
-                <p>Ticket Price <?php  echo get_post_meta(get_the_ID(), 'ticket_price', true); ?></p>
-                <p>Release Date <?php echo get_post_meta(get_the_ID(), 'release_date', true); ?></p>
+                <p><b>Country : </b> <?php display_taxonomy_terms('country'); ?></p>
+                <p><b>Genre : </b> <?php display_taxonomy_terms('genre'); ?></p>
+                <p><b>Ticket Price : </b> <?php  echo get_post_meta(get_the_ID(), 'ticket_price', true); ?></p>
+                <p><b>Release Date : </b> <?php echo date('jS F, Y', strtotime(get_post_meta(get_the_ID(), 'release_date', true))); ?></p>
             <?php endif; ?>
 
             <?php unite_post_nav(); ?>

@@ -1,5 +1,9 @@
 <?php
-function my_theme_enqueue_styles() {
+/*
+* creating child themes from parent themes unite
+* @author Kadek Bagus
+*/
+function unite_child_theme() {
 
     $parent_style = 'unite-style'; 
 
@@ -10,4 +14,26 @@ function my_theme_enqueue_styles() {
         wp_get_theme()->get('Version')
     );
 }
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'unite_child_theme' );
+
+
+/*
+* creating custom post type 'films'
+* @author Kadek Bagus
+*/
+function post_type_films() {
+    register_post_type( 'films',
+        array(
+            'labels' => array(
+                'name' => __( 'Films' ),
+                'singular_name' => __( 'Film' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'supports' => array('title', 'editor', 'genre', 'country', 'year', 'actors'),
+            'rewrite' => array('slug' => 'films'),
+        )
+    );
+}
+add_action( 'init', 'post_type_films' );
+

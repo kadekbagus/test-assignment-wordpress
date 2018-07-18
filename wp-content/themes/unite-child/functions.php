@@ -37,3 +37,52 @@ function post_type_films() {
 }
 add_action( 'init', 'post_type_films' );
 
+/*
+* creating taxonomy genre,country,year,actors and link it to films post type
+* @author Kadek Bagus
+*/
+function genre_taxonomy() {
+    register_taxonomy(
+        'genre',
+        'films',
+        array(
+            'label' => __( 'Genre' ),
+            'rewrite' => array( 'slug' => 'genre' ),
+        )
+    );
+}
+function country_taxonomy() {
+    register_taxonomy(
+        'country',
+        'films',
+        array(
+            'label' => __( 'Country' ),
+            'rewrite' => array( 'slug' => 'country' ),
+        )
+    );
+}
+function year_taxonomy() {
+    register_taxonomy(
+        'year',
+        'films',
+        array(
+            'label' => __( 'Year' ),
+            'rewrite' => array( 'slug' => 'year' ),
+        )
+    );
+}
+function actors_taxonomy() {
+    register_taxonomy(
+        'actors',
+        'films',
+        array(
+            'label' => __( 'Actors' ),
+            'rewrite' => array( 'slug' => 'actors' ),
+        )
+    );
+}
+
+add_action( 'init', 'genre_taxonomy' );
+add_action( 'init', 'country_taxonomy' );
+add_action( 'init', 'year_taxonomy' );
+add_action( 'init', 'actors_taxonomy' );

@@ -86,3 +86,19 @@ add_action( 'init', 'genre_taxonomy' );
 add_action( 'init', 'country_taxonomy' );
 add_action( 'init', 'year_taxonomy' );
 add_action( 'init', 'actors_taxonomy' );
+
+/*
+* function for displaying custom taxonomy
+* @author Kadek Bagus
+*/
+function display_taxonomy_terms($post_type, $display = false) {
+    global $post;
+    
+    $term_list = wp_get_post_terms($post->ID, $post_type, array('fields' => 'names'));
+
+    if($display == false) {
+        echo $term_list[0];
+    }elseif($display == 'return') {
+        return $term_list[0];
+    }
+}
